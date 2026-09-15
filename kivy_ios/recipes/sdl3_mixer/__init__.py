@@ -32,6 +32,7 @@ class LibSDL3MixerRecipe(Recipe):
             "-configuration", "Release",
             "BUILD_LIBRARY_FOR_DISTRIBUTION=YES",
             "SKIP_INSTALL=NO",
+            self.ctx.ios_deployment_target,
         )
 
     def lipoize_libraries(self):

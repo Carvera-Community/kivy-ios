@@ -491,6 +491,12 @@ class Context:
     def concurrent_xcodebuild(self):
         return "IDEBuildOperationMaxNumberOfConcurrentCompileTasks={}".format(self.num_cores)
 
+    @property
+    def ios_deployment_target(self):
+        # Xcode 27's iOS SDK rejects targets below 15.0. 15.0 remains valid on
+        # Xcode 16.4 (supported range 12.0–18.5).
+        return "IPHONEOS_DEPLOYMENT_TARGET=15.0"
+
 
 class Recipe:
     props = {

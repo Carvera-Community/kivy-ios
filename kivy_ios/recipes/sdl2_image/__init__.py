@@ -15,6 +15,7 @@ class LibSDL2ImageRecipe(Recipe):
         shprint(sh.xcodebuild, self.ctx.concurrent_xcodebuild,
                 "ONLY_ACTIVE_ARCH=NO",
                 "ARCHS={}".format(plat.arch),
+                self.ctx.ios_deployment_target,
                 "HEADER_SEARCH_PATHS={}".format(
                     join(self.ctx.include_dir, "common", "sdl2")),
                 "-sdk", plat.sdk,

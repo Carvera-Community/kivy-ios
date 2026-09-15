@@ -68,6 +68,11 @@ class Hostpython3Recipe(HostRecipe):
                     "ac_cv_func_preadv=no",
                     "ac_cv_func_pwritev=no",
                     "ac_cv_func_sendfile=no",
+                    # Xcode 27's macOS SDK exposes dup3/pipe2, but they only exist
+                    # at runtime on macOS 27+. Python 3.11 then crashes in os.pipe
+                    # during compileall/ensurepip on macOS 26. See python/cpython#153711.
+                    "ac_cv_func_dup3=no",
+                    "ac_cv_func_pipe2=no",
                     "--prefix={}".format(join(self.ctx.dist_dir, "hostpython3")),
                     "--with-openssl={}".format(join(self.ctx.dist_dir, 'hostopenssl')),
                     _env=build_env)

@@ -39,6 +39,7 @@ class LibffiRecipe(Recipe):
         shprint(sh.xcodebuild, self.ctx.concurrent_xcodebuild,
                 "ONLY_ACTIVE_ARCH=NO",
                 "ARCHS={}".format(plat.arch),
+                self.ctx.ios_deployment_target,
                 "-sdk", plat.sdk,
                 "-project", "libffi.xcodeproj",
                 "-target", "libffi-iOS",
